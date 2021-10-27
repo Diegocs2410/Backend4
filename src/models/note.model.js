@@ -15,8 +15,8 @@ const noteSchema = new Schema(
       required: true,
     },
     user: {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref: 'user',
     },
     priority: {
       type: String,

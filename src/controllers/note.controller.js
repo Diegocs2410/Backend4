@@ -1,18 +1,18 @@
 const noteCtrl = {};
 const noteModel = require('../models/note.model');
 
-noteCtrl.listNotes = async (req, res) => {
-  try {
-    const notes = await noteModel.find();
-    res.json({ ok: true, notes });
-  } catch (error) {
-    res.status(400).json({ ok: false, message: error.message });
-  }
-};
+// noteCtrl.listNotes = async (req, res) => {
+//   try {
+//     const notes = await noteModel.find().populate('user', { password: 0 });
+//     res.json({ ok: true, notes });
+//   } catch (error) {
+//     res.status(400).json({ ok: false, message: error.message });
+//   }
+// };
 noteCtrl.listNoteById = async (req, res) => {
   try {
     const { id } = req.params;
-    const note = await noteModel.findById({ _id: id });
+    const note = await noteModel.findById({ _id: id }).populate('user', { password: 0 });
     if (!note) {
       return res.status(400).json({ ok: false, message: 'Note not found' });
     }
@@ -71,7 +71,16 @@ noteCtrl.updateNote = async (req, res) => {
     };
 
     await note.updateOne(updatedNote);
-		res.status(200).send(updatedNote);
+    res.status(200).json({ message: 'Note updtated successfully', ok: true, updatedNote });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message });
+  }
+};
+noteCtrl.notesByUser = async (req, res) => {
+  try {
+    const id = req.userid;
+    const userNotes = await noteModel.find({ user: id });
+    res.status(200).json({ ok: true, userNotes });
   } catch (error) {
     res.status(500).json({ ok: false, message: error.message });
   }

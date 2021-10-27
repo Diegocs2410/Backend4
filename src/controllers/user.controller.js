@@ -4,17 +4,17 @@ const auth = require('../helpers/Auth.helpers');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-userCtrl.listAllUsers = async (req, res) => {
-  try {
-    const users = await userModel.find({}, { password: 0 });
-    if (!users) {
-      res.status(404).json({ message: 'Users not found', ok: false });
-    }
-    res.json({ ok: true, users });
-  } catch (error) {
-    res.status(500).json({ message: error.message, ok: false });
-  }
-};
+// userCtrl.listAllUsers = async (req, res) => {
+//   try {
+//     const users = await userModel.find({}, { password: 0 });
+//     if (!users) {
+//       res.status(404).json({ message: 'Users not found', ok: false });
+//     }
+//     res.json({ ok: true, users });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message, ok: false });
+//   }
+// };
 userCtrl.registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
