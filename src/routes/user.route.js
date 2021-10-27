@@ -4,4 +4,5 @@ const route = Router();
 
 route.get('/', userCtrl.listAllUsers);
 route.post('/register', userCtrl.registerUser);
+route.post('/login', userCtrl.login);
 module.exports = route;

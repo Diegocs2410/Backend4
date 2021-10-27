@@ -4,23 +4,23 @@ const noteSchema = new Schema(
   {
     title: {
       type: String,
-      required,
+      required: true,
     },
     description: {
       type: String,
-      required,
+      required: true,
     },
     date: {
       type: Date,
-      required,
+      required: true,
     },
     user: {
       type: String,
-      required,
+      required: true,
     },
     priority: {
       type: String,
-      required,
+      required: true,
     },
   },
   { timestamps: true }

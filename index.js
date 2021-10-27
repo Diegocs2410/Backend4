@@ -14,6 +14,7 @@ app.use(cors({ origin: '*' }));
 
 // Routes
 app.use('/user', require('./src/routes/user.route'));
+app.use('/note', require('./src/routes/note.route'));
 
 app.listen(app.get('Port'), function () {
   console.log('listening on port: ', app.get('Port'));
