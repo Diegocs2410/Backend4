@@ -50,4 +50,30 @@ noteCtrl.deleteNote = async (req, res) => {
     res.status(500).json({ ok: false, message: error.message });
   }
 };
+noteCtrl.updateNote = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const note = await noteModel.findById({ _id: id });
+    if (!note) {
+      return res.status(400).json({ message: 'Note not found', ok: false });
+    }
+    const title = req.body.title || note.title;
+    const description = req.body.description || note.description;
+    const date = req.body.date || note.date;
+    const user = req.body.user || note.user;
+    const priority = req.body.priority || note.priority;
+    const updatedNote = {
+      title,
+      description,
+      date,
+      user,
+      priority,
+    };
+
+    await note.updateOne(updatedNote);
+		res.status(200).send(updatedNote);
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message });
+  }
+};
 module.exports = noteCtrl;
