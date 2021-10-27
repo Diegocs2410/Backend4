@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const URI = 'mongoose://localhost/psl';
+const URI = 'mongodb://localhost/psl';
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // useCreateIndex: true,
-  // useFindAndModify: true,
+  // useFindAndModify: false,
 };
 mongoose
   .connect(URI, options)

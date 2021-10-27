@@ -6,12 +6,12 @@ require('./db');
 
 const app = express();
 
-app.use('Port', 4000);
+app.set('Port', 4000);
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({ origin: '*' }));
 
-app.listen(app.get('port'), function () {
-  console.log('listening on port: ' + app.get('port'));
+app.listen(app.get('Port'), function () {
+  console.log('listening on port: ', app.get('Port'));
 });
