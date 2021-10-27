@@ -37,4 +37,17 @@ noteCtrl.addNote = async (req, res) => {
     res.status(500).json({ ok: false, message: error.message });
   }
 };
+noteCtrl.deleteNote = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const note = await noteModel.findById({ _id: id });
+    if (!note) {
+      return res.status(400).json({ message: 'Note not found', ok: false });
+    }
+    await note.deleteOne();
+    res.status(200).json({ message: 'Note deleted', ok: true });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message });
+  }
+};
 module.exports = noteCtrl;
