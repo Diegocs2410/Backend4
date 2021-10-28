@@ -52,7 +52,7 @@ userCtrl.login = async (req, res) => {
     const resp = bcrypt.compareSync(password, user.password);
     if (resp) {
       return res.status(200).json({
-        message: 'User created successfully, Welcome',
+        message: 'Welcome Sr: ' + user.name,
         ok: true,
         _id: user._id,
         name: user.name,
