@@ -2,6 +2,10 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../models/user.model');
 
 const verifyToken = (req, res, next) => {
+  // pruebas
+  console.log(req.headers.authorization)
+
+
   if (!req.headers.authorization) {
     return res.status(401).json({ ok: false, message: 'You has not been authorized 1' });
   }
